@@ -1,11 +1,12 @@
 """
 """
 
+import generate_index # type: ignore
 import os # type: ignore
 import parse_index # type: ignore
-from parse_index import PackageListing # type: ignore
 from selenium import webdriver # type: ignore
 import sys # type: ignore
+from types import PackageListing # type: ignore
 from typing import List # type: ignore
 
 
@@ -37,6 +38,7 @@ def main(redownload=True):
                 get_package(driver, package)
 
         driver.close()
+        generate_index.generate(package_list)
 
     except Exception as e:
         print(f'Exception encountered {e}')
@@ -95,6 +97,7 @@ def get_package(driver, pkg: PackageListing):
 
 
 ################################################################################
+
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:

@@ -7,14 +7,12 @@ handling.
 
 from bs4 import BeautifulSoup # type: ignore
 import re # type: ignore
-from typing import List, Tuple #type: ignore
+from types import PackageListing # type: ignore
+from typing import List # type: ignore
 
 
 ################################################################################
 
-
-Index = int
-PackageListing = Tuple[Index, str, str, str, str, str]
 
 
 BASE_URL = 'https://package.elm-lang.org'
