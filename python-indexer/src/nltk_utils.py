@@ -17,20 +17,19 @@ TOP = ['the', 'be', 'to', 'of', 'and',
 ################################################################################
 
 
-def tokenize_and_stem(text: str) -> List[str]:
-    """Tokenize and stem input.
+def tokenize_and_filter(text: str) -> List[str]:
+    """Tokenize and filter input.
     Remove puctuation and common words, lower case.
     """
     tokens = tokenize(text)
-    tokens_ = strip_common(tokens)
-    stems = stem(tokens_)
-    return stems
+    tokens_ = [word.lower() for word in tokens
+               if word.isalnum()]
+    return strip_common(tokens_)
 
 
 def tokenize(s: str) -> List[str]:
-    """Tokenize, lower case, and remove puctuation"""
-    words = nltk.word_tokenize(s)
-    return [word.lower() for word in words if word.isalnum()]
+    """Tokenize, lower case, remove puctuation and common words."""
+    return nltk.word_tokenize(s)
 
 
 def strip_common(words: List[str]) -> List[str]:

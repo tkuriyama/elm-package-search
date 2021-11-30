@@ -32,7 +32,7 @@ def main(redownload=True):
         download()
 
     package_list = load_package_index(PARSED_INDEX)
-    generate_index.generate(package_list)
+    generate_index.generate(BASE, package_list)
 
 
 def download():
@@ -114,10 +114,7 @@ def get_package(driver, pkg: PackageListing):
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:
-        try:
-            main(int(sys.argv[1]))
-        except:
-            print('Pass in 0 or 1 to specify bool of redownload flag.')
+        main(int(sys.argv[1]))
     else:
         main()
 
