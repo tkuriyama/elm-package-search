@@ -4,16 +4,17 @@
 import generate_index # type: ignore
 import os # type: ignore
 import parse_index # type: ignore
+import parse_package # type: ignore
 from selenium import webdriver # type: ignore
+from parser_types import PackageListing # type: ignore
 import sys # type: ignore
-from types import PackageListing # type: ignore
 from typing import List # type: ignore
 
 
 ################################################################################
 
 
-URL = 'https://package.elm-lang.org/'
+BASE_URL = 'https://package.elm-lang.org/'
 
 BASE = f'{os.getcwd()}/package_data/'
 INDEX = f'{BASE}index.html'
@@ -24,25 +25,31 @@ PARSED_INDEX = f'{BASE}index.tsv'
 
 def main(redownload=True):
     """Retrieve and parse Elm package index."""
+    if redownload:
+        download()
 
+    package_list = load_package_index(PARSED_INDEX)
+    generate_index.generate(package_list)
+
+
+def download():
+    """Execute all downloads."""
     driver = webdriver.Chrome()
 
     try:
-        if redownload:
-            get_package_index(driver)
+        get_package_index(driver)
         parse_package_index(INDEX, PARSED_INDEX)
 
-        if redownload:
-            package_list = load_package_index(PARSED_INDEX)
-            for package in package_list[:5]:
-                get_package(driver, package)
+        package_list = load_package_index(PARSED_INDEX)
+        for package in package_list[:5]:
+            get_package(driver, package)
 
         driver.close()
-        generate_index.generate(package_list)
 
     except Exception as e:
         print(f'Exception encountered {e}')
         driver.close()
+
 
 ################################################################################
 # Package Index
@@ -50,7 +57,7 @@ def main(redownload=True):
 
 def get_package_index(driver):
     """Extract package listings data."""
-    driver.get(URL)
+    driver.get(BASE_URL)
     source = driver.page_source
     with open(INDEX, 'w') as f:
         f.write(source)
@@ -82,18 +89,20 @@ def load_package_index(fname) -> List[PackageListing]:
 
 def get_package(driver, pkg: PackageListing):
     """Download package docs and store in subdirectory."""
-    index, _, _, url, _, _ = pkg
+    index, _, name, url, _, _ = pkg
 
     dir = f'{BASE}{str(index)}'
     if not os.path.exists(dir):
         os.mkdir(dir)
 
-    driver.get(URL)
+    driver.get(url)
     source = driver.page_source
     with open(f'{dir}/README.html', 'w') as f:
         f.write(source)
 
-    print(f'Finished downloading {index}')
+    parse_package.parse_package(driver, dir, name, BASE_URL, source)
+
+    print(f'> Finished processing {index}, package {name}')
 
 
 ################################################################################

@@ -6,8 +6,8 @@ handling.
 """
 
 from bs4 import BeautifulSoup # type: ignore
+from parser_types import PackageListing # type: ignore
 import re # type: ignore
-from types import PackageListing # type: ignore
 from typing import List # type: ignore
 
 
