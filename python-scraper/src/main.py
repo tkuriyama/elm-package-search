@@ -1,13 +1,16 @@
-"""
+"""Download Elm Package Index data and generate local index.
 """
 
 import generate_index # type: ignore
 import os # type: ignore
 import parse_index # type: ignore
 import parse_package # type: ignore
+import random # type: ignore
 from selenium import webdriver # type: ignore
+import selenium_utils # type: ignore
 from parser_types import PackageListing # type: ignore
 import sys # type: ignore
+import time # type: ignore
 from typing import List # type: ignore
 
 
@@ -41,8 +44,9 @@ def download():
         parse_package_index(INDEX, PARSED_INDEX)
 
         package_list = load_package_index(PARSED_INDEX)
-        for package in package_list[:5]:
+        for package in package_list[1250:]:
             get_package(driver, package)
+            time.sleep(random.randint(1, 4))
 
         driver.close()
 
@@ -57,7 +61,7 @@ def download():
 
 def get_package_index(driver):
     """Extract package listings data."""
-    driver.get(BASE_URL)
+    selenium_utils.get(driver, BASE_URL)
     source = driver.page_source
     with open(INDEX, 'w') as f:
         f.write(source)
@@ -95,7 +99,7 @@ def get_package(driver, pkg: PackageListing):
     if not os.path.exists(dir):
         os.mkdir(dir)
 
-    driver.get(url)
+    selenium_utils.get(driver, url)
     source = driver.page_source
     with open(f'{dir}/README.html', 'w') as f:
         f.write(source)

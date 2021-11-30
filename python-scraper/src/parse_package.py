@@ -3,8 +3,8 @@
 
 from bs4 import BeautifulSoup # type: ignore
 import re # type: ignore
+import selenium_utils # type: ignore
 from typing import List, Tuple # type: ignore
-
 
 ################################################################################
 
@@ -29,14 +29,15 @@ def parse_package(driver, dir: str, name: str, base_url: str, source: str):
 
     about, (_, source_url), pages = parse_links(links)
 
-    driver.get(source_url)
+    selenium_utils.get(driver, source_url)
+
     if 'page not found' in driver.title.lower():
         print('Package sounce not found on GH, skipping...')
         return
 
     for title, url in [about] + pages:
         url_ = f'{base_url[:-1]}{url}'
-        driver.get(url_)
+        selenium_utils.get(driver, url_)
         source = driver.page_source
         with open(f'{dir}/{title}.html', 'w') as f:
             f.write(source)
