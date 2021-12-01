@@ -4,7 +4,7 @@
 import math # type: ignore
 import os # type: ignore
 import parse_page # type: ignore
-from parser_types import PackageListing # type: ignore
+from parser_types import PackageListing, PackageIndex, PackageIndexMap # type: ignore
 from typing import Dict, List, Optional, Set, Tuple, ValuesView # type: ignore
 import utils # type: ignore
 
@@ -22,9 +22,6 @@ IndexNum = int
 Count = int
 
 PackageData = Tuple[List[str], List[str]]
-
-PackageIndex = Dict[str, float]
-PackageIndexMap = Dict[IndexNum, PackageIndex]
 
 
 ################################################################################

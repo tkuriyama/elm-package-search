@@ -1,17 +1,29 @@
 """Custom types.
 """
 
-from typing import Tuple # type: ignore
+from typing import Dict, Tuple # type: ignore
 
 
 ################################################################################
+# Listing
 
 
-Index = int
+IndexNum = int
 Author = str
 Name = str
 URL = str
 version = str
 Description = str
 
-PackageListing = Tuple[Index, Author, Name, URL, version, Description]
+PackageListing = Tuple[IndexNum, Author, Name, URL, version, Description]
+
+
+################################################################################
+# Index
+
+
+Word = str
+
+
+PackageIndex = Dict[Word, float]
+PackageIndexMap = Dict[IndexNum, PackageIndex]
