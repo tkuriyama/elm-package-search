@@ -10,7 +10,7 @@ from typing import List # type: ignore
 def nested_to_elm_str(data, i: int = 0) -> str:
     """Convert nester lists or tuples to Elm string."""
     return (f'"{data}"' if isinstance(data, str) else
-            f'{data}' if isinstance(data, float) else
+            f'{data:.4f}' if isinstance(data, float) else
             f'{data}' if isinstance(data, int) else
             iter_to_str(data, '[', ']', i+1) if isinstance(data, list) else
             iter_to_str(data, '(', ')', i+1) if isinstance(data, tuple) else
