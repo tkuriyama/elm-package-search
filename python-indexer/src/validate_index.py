@@ -66,8 +66,8 @@ def score_similarity(q_terms: List[Tuple[str, float]],
     for word, weight in q_terms:
         if word in doc_terms:
             num += weight * doc_terms[word]
-            q_denom += weight ** 2
             doc_denom += doc_terms[word] ** 2
+        q_denom += weight ** 2
 
     return (0.0 if num == 0 else
             num / (math.sqrt(q_denom) * math.sqrt(doc_denom)))
