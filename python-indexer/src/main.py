@@ -23,10 +23,11 @@ BASE = f'{os.getcwd()}/package_data/'
 INDEX = f'{BASE}index.html'
 PARSED_INDEX = f'{BASE}index.tsv'
 
+
 ################################################################################
 
 
-def main(redownload=True):
+def main(redownload=False):
     """Retrieve and parse Elm package index."""
     if redownload:
         download()

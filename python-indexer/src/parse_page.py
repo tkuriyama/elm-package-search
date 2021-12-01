@@ -15,7 +15,8 @@ from typing import List, Tuple # type: ignore
 def parse_page(html: str) -> List[str]:
     """Parse page, return tokenized and stemmed plaintext words."""
     text = extract_text(html)
-    return nltk_utils.tokenize_and_filter(text)
+    tokens = nltk_utils.tokenize_and_filter(text)
+    return nltk_utils.stem(tokens)
 
 def extract_text(html: str) -> str:
     """Extract plaintext from HTML."""
@@ -31,8 +32,9 @@ def parse_about(html: str) -> Tuple[List[str], List[str]]:
     """Parse about page, return plaintext and list of dependencies."""
     soup = BeautifulSoup(html, 'html.parser')
 
-    words = nltk_utils.tokenize_and_filter(soup.find('p').text)
+    tokens = nltk_utils.tokenize_and_filter(soup.find('p').text)
+    tokens_ = nltk_utils.stem(tokens)
     dependencies = [cell.text for cell in soup.find_all('td')
                     if not re.findall(r'[0-9]\.[0-9]\.[0-9].*', cell.text)]
 
-    return words, dependencies
+    return tokens_, dependencies
