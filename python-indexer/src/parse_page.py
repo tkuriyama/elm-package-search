@@ -21,7 +21,7 @@ def parse_page(html: str) -> List[str]:
 def extract_text(html: str) -> str:
     """Extract plaintext from HTML."""
     soup = BeautifulSoup(html, 'html.parser')
-    plaintexts = [p.text for p in soup.find_all('p')]
+    plaintexts = [p.text for p in soup.find_all(['h1', 'h2', 'h3', 'p'])]
     return ' '.join(plaintexts)
 
 

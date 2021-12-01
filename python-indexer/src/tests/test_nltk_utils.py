@@ -18,3 +18,15 @@ class TestNLTKUtils:
         input = 'Hello, world!\nHello'
         output = ['Hello', ',', 'world', '!', 'Hello']
         assert nltk_utils.tokenize(input) == output
+
+
+    def test_valid_token(self):
+        """Test valid tokens."""
+        f = nltk_utils.valid_token
+
+        assert f('a') is True
+        assert f('a.') is False
+        assert f('.') is False
+        assert f('a.b') is True
+        assert f('a.b.c') is True
+        assert f('a.b.c.') is False

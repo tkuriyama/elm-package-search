@@ -35,7 +35,7 @@ def main(redownload=False):
     if redownload:
         download()
 
-    package_list = load_package_index(PARSED_INDEX)[:100]
+    package_list = load_package_index(PARSED_INDEX)
     package_index = generate_index.generate(BASE, package_list)
 
     with open(f'{BASE}package_index.pkl', 'wb') as f:

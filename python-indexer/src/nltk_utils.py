@@ -1,5 +1,6 @@
 import nltk # type: ignore
 import nltk.stem.porter as porter # type: ignore
+import re # type: ignore
 from typing import List # type: ignore
 
 
@@ -23,7 +24,7 @@ def tokenize_and_filter(text: str) -> List[str]:
     """
     tokens = tokenize(text)
     tokens_ = [word.lower() for word in tokens
-               if word.isalnum()]
+               if valid_token(word)]
     return strip_common(tokens_)
 
 
@@ -31,6 +32,11 @@ def tokenize(s: str) -> List[str]:
     """Tokenize, lower case, remove puctuation and common words."""
     return nltk.word_tokenize(s)
 
+
+def valid_token(word: str) -> bool:
+    """Accept alphanumeric or strings of form A.B"""
+    return (word.isalnum() or
+            len(re.findall(r'[A-Za-z0-9]+(?:\.[A-Za-z0-9]+)+$', word)) > 0)
 
 def strip_common(words: List[str]) -> List[str]:
     """Strip most common English words."""

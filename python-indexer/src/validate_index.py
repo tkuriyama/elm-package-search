@@ -32,9 +32,10 @@ def query(pkg_ref: Dict[int, Tuple[str, str]],
     qs = gen_query_terms(q)
     scored = [(i, pkg_ref[i], score_similarity(qs, terms))
               for i, terms in pkg_indexes.items()]
-    scored_ = sorted(scored, key=lambda x: x[2])[::-1]
+    nonzero = sorted([elem for elem in scored if elem[2] > 0.0],
+                     key=lambda x: (-1 * x[2], x[0]))
 
-    return scored_[:limit]
+    return nonzero[:limit]
 
 
 def gen_query_terms(q: str) -> List[Tuple[str, float]]:
