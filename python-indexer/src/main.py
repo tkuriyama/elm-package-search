@@ -1,6 +1,7 @@
 """Download Elm Package Index data and generate local index.
 """
 
+import generate_elm_index # type: ignore
 import generate_index # type: ignore
 import os # type: ignore
 import parse_index # type: ignore
@@ -33,8 +34,12 @@ def main(redownload=False):
         download()
 
     package_list = load_package_index(PARSED_INDEX)
-    generate_index.generate(BASE, package_list)
+    package_index = generate_index.generate(BASE, package_list)
 
+    generate_elm_index.generate_package_ref(f'{BASE}PackageListing.elm',
+                                            package_list)
+    generate_elm_index.generate_index(f'{BASE}PackageIndex.elm',
+                                      package_index)
 
 def download():
     """Execute all downloads."""

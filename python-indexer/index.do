@@ -15,3 +15,7 @@ mypy src >&2
 echo "\n> Run main without data redownload" >&2
 python src/main.py 0  >&2
 
+echo "\n> Formatting Elm files..." >&2
+elm-format package_data/*.elm --yes >&2
+
+
