@@ -11,6 +11,13 @@ import utils # type: ignore
 
 ################################################################################
 
+
+DEBUG = 1
+
+
+################################################################################
+
+
 IndexNum = int
 Count = int
 
@@ -22,28 +29,29 @@ PackageIndexMap = Dict[IndexNum, PackageIndex]
 
 ################################################################################
 
+
 def generate(base_dir: str, pkgs: List[PackageListing]) -> PackageIndexMap:
     """Generate package index."""
 
-    print('\n\n>>> Starting first pass...')
+    print('\n\n> Starting first pass...\n')
     pkg_map: Dict[str, IndexNum] = dict()
     doc_term_map: Dict[str, Set[IndexNum]] = dict()
     pkg_data: Dict[IndexNum, PackageData] = dict()
 
     for pkg in pkgs[:10]:
-        index, author, name, _, _, _ = pkg
-        result = collect_package(base_dir, index, name)
+        i, author, name, _, _, _ = pkg
+        result = collect_package(base_dir, i, name)
         if result is not None:
             words, dependencies = result
             words += [author, name]
-            pkg_map[f'{author}/{name}'] = index
-            doc_term_map = update_doc_term_map(words, index, doc_term_map)
-            pkg_data[index] = (words, dependencies)
+            pkg_map[f'{author}/{name}'] = i
+            doc_term_map = update_doc_term_map(words, i, doc_term_map)
+            pkg_data[i] = (words, dependencies)
 
-    print('\n\n>>> Collect results from first pass...')
+    print('\n\n> Collect results from first pass...\n')
     dependency_map = gen_dependency_map(pkg_map, pkg_data.values())
 
-    print('\n\n>>> Starting second pass...')
+    print('\n\n> Starting second pass...\n')
     pkg_indexes = dict([(i, gen_index(doc_term_map, dependency_map, i, words))
                         for i, (words, _) in pkg_data.items()])
 
@@ -76,8 +84,9 @@ def collect_package(base_dir: str,
             words = parse_page.parse_page(data)
         all_words += words
 
-    print(f'\nFinished processing pkg {i} {name}')
-    print(f'{len(words)} words + {len(dependencies)} dependencies')
+    if DEBUG:
+        print(f'\nFinished processing pkg {i} {name}')
+        print(f'{len(words)} words + {len(dependencies)} dependencies')
 
     return (all_words, dependencies)
 
