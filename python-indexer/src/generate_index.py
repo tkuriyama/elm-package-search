@@ -2,6 +2,7 @@
 """
 
 import math # type: ignore
+import nltk_utils # type: ignore
 import os # type: ignore
 import parse_page # type: ignore
 from parser_types import PackageListing, PackageIndex, PackageIndexMap # type: ignore
@@ -35,12 +36,12 @@ def generate(base_dir: str, pkgs: List[PackageListing]) -> PackageIndexMap:
     doc_term_map: Dict[str, Set[IndexNum]] = dict()
     pkg_data: Dict[IndexNum, PackageData] = dict()
 
-    for pkg in pkgs[:10]:
+    for pkg in pkgs:
         i, author, name, _, _, _ = pkg
         result = collect_package(base_dir, i, name)
         if result is not None:
             words, dependencies = result
-            words += [author, name]
+            words += expand_meta_words(author, name)
             pkg_map[f'{author}/{name}'] = i
             doc_term_map = update_doc_term_map(words, i, doc_term_map)
             pkg_data[i] = (words, dependencies)
@@ -121,6 +122,22 @@ def gen_dependency_map(pkg_map: Dict[str, IndexNum],
     return d
 
 
+def expand_meta_words(author, name) -> List[str]:
+    """Add meta words. Repeat for extra weight."""
+    author, name = author.lower(), name.lower()
+
+    words = set([author, name, f'{author}/{name}'])
+    words = words | set(name.split('-'))
+    words = words | set(name.split('_'))
+
+    return nltk_utils.stem(list(words) * 2)
+
+
+
+################################################################################
+# Index Gen and Scoring
+
+
 def gen_index(doc_term_map: Dict[str, Set[IndexNum]],
               dependency_map: Dict[IndexNum, Count],
               i: IndexNum,
@@ -133,7 +150,8 @@ def gen_index(doc_term_map: Dict[str, Set[IndexNum]],
     pkg_index: PackageIndex = dict()
 
     for word in word_freq:
-        doc_inverse_freq = math.log(total_docs / len(doc_term_map[word]))
+        doc_inverse_freq = get_doc_inverse_freq(total_docs,
+                                                len(doc_term_map[word]))
         dependency_freq = get_dependency_freq(i, dependency_map)
         pkg_index[word] = math.log(word_freq[word] *
                                    doc_inverse_freq *
@@ -142,17 +160,17 @@ def gen_index(doc_term_map: Dict[str, Set[IndexNum]],
     return pkg_index
 
 
-################################################################################
-# Scoring
+def get_doc_inverse_freq(total_docs: int, term_doc_count: int) -> float:
+    """Generate inverse doc frequency score with min of 1.0."""
+    return max(1.0, math.log(total_docs / term_doc_count))
 
 
 def get_dependency_freq(i: IndexNum,
                         dependency_map: Dict[IndexNum, Count]
                         ) -> float:
-    """Generate dependency score as log of dependency count.
+    """Generate dependency score as log of dependency count with min of 1.0.
     Packages that are used by other packages score higher.
     """
     return (1.0 if i not in dependency_map else
-            1.0 if dependency_map[i] <= 1 else
-            math.log(dependency_map[i]))
+            max(1.0, math.log(dependency_map[i])))
 

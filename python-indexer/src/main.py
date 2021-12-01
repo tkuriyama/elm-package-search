@@ -10,7 +10,9 @@ import random # type: ignore
 from selenium import webdriver # type: ignore
 import selenium_utils # type: ignore
 from parser_types import PackageListing # type: ignore
+import pickle # type: ignore
 import sys # type: ignore
+import validate_index  # type: ignore
 import time # type: ignore
 from typing import List # type: ignore
 
@@ -33,8 +35,12 @@ def main(redownload=False):
     if redownload:
         download()
 
-    package_list = load_package_index(PARSED_INDEX)
+    package_list = load_package_index(PARSED_INDEX)[:100]
     package_index = generate_index.generate(BASE, package_list)
+
+    with open(f'{BASE}package_index.pkl', 'wb') as f:
+        pickle.dump(package_index, f)
+    validate_index.test_find_self(package_list, package_index)
 
     generate_elm_index.generate_package_ref(f'{BASE}PackageListing.elm',
                                             package_list)

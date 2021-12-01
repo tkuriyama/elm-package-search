@@ -7,6 +7,16 @@ from utils import float_eq
 
 class TestScoring:
 
+
+    def test_get_doc_inverse_freq(self):
+        """Test get_doc_inverse_freq"""
+        f = generate_index.get_doc_inverse_freq
+
+        assert float_eq(f(100, 100), 1.0)
+        assert float_eq(f(100, 50), 1.0)
+        assert float_eq(f(100, 20), math.log(5))
+
+
     def test_get_dependency_freq(self):
         """Test dependency scoring."""
         i = 0
