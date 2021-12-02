@@ -36,7 +36,7 @@ def main(redownload=False):
         download()
 
     pkg_refs = load_pkg_refs(REF_PATH)
-    pkg_index_map = generate_index.gen_map(BASE_PATH, pkg_refs)
+    pkg_index_map = generate_index.gen_index_map(BASE_PATH, pkg_refs)
 
     with open(f'{BASE_PATH}package_index.pkl', 'wb') as f:
         pickle.dump(pkg_index_map, f)

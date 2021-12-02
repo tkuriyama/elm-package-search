@@ -27,7 +27,7 @@ PackageData = Tuple[List[PT.Word], List[str]]
 ################################################################################
 
 
-def generate(base_dir: str, pkg_refs: List[PT.PkgRef]) -> PT.PkgIndexMap:
+def gen_index_map(base_dir: str, pkg_refs: List[PT.PkgRef]) -> PT.PkgIndexMap:
     """Generate package index."""
 
     print('\n\n> Starting first pass...\n')

@@ -1,6 +1,6 @@
-import generate_index
-import math
-from utils import float_eq
+import generate_index # type: ignore
+import math # type: ignore
+from utils import float_eq # type: ignore
 
 
 ################################################################################

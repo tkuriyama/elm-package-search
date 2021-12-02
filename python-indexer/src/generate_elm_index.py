@@ -3,7 +3,7 @@
 
 import elm_utils # type: ignore
 import parser_types as PT # type: ignore
-from types import List, Tuple # type: ignore
+from typing import List, Tuple # type: ignore
 
 
 ################################################################################
@@ -45,7 +45,7 @@ def reformat_refs(pkg_refs: List[PT.PkgRef]
 # Package index
 
 
-def generate_index(fname: str, pkg_index_map: PT.PkgIndexMap):
+def gen_index(fname: str, pkg_index_map: PT.PkgIndexMap):
     """Convert package index data to Elm string and write to file."""
     pkg_index_map_ = reformat_index_map(pkg_index_map)
 

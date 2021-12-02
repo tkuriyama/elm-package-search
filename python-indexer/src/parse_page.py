@@ -3,7 +3,7 @@
 
 from bs4 import BeautifulSoup # type: ignore
 import nltk_utils # type: ignore
-import parse.types as PT # type: ignore
+import parser_types as PT # type: ignore
 import re # type: ignore
 from typing import List, Tuple # type: ignore
 

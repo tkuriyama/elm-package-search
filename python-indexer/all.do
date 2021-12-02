@@ -3,7 +3,7 @@
 # py.test >&2
 
 echo "\n> PyTest coverage" >&2
-pytest --cov-config=.coveragerc --cov=src tests/ >&2
+pytest --cov-config=.coveragerc --cov=src src/tests/ >&2
 
 
 echo "\n> Running pyflakes" >&2
