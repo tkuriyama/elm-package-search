@@ -5,7 +5,7 @@ import math # type: ignore
 import nltk_utils # type: ignore
 import os # type: ignore
 import parse_page # type: ignore
-from parser_types import PackageListing, PackageIndex, PackageIndexMap # type: ignore
+import parser_types as PT # type: ignore
 from typing import Dict, List, Optional, Set, Tuple, ValuesView # type: ignore
 import utils # type: ignore
 
@@ -19,48 +19,47 @@ DEBUG = 0
 ################################################################################
 
 
-IndexNum = int
 Count = int
 
-PackageData = Tuple[List[str], List[str]]
+PackageData = Tuple[List[PT.Word], List[str]]
 
 
 ################################################################################
 
 
-def generate(base_dir: str, pkgs: List[PackageListing]) -> PackageIndexMap:
+def generate(base_dir: str, pkg_refs: List[PT.PkgRef]) -> PT.PkgIndexMap:
     """Generate package index."""
 
     print('\n\n> Starting first pass...\n')
-    pkg_map: Dict[str, IndexNum] = dict()
-    doc_term_map: Dict[str, Set[IndexNum]] = dict()
-    pkg_data: Dict[IndexNum, PackageData] = dict()
+    pkg_id_map: Dict[str, PT.IndexNum] = dict()
+    doc_term_map: Dict[PT.Word, Set[PT.IndexNum]] = dict()
+    pkg_data: Dict[PT.IndexNum, PackageData] = dict()
 
-    for pkg in pkgs:
-        i, author, name, _, _, _ = pkg
+    for ref in pkg_refs:
+        i, author, name, _, _, _ = ref
         result = collect_package(base_dir, i, name)
         if result is not None:
             words, dependencies = result
             words += expand_meta_words(author, name)
-            pkg_map[f'{author}/{name}'] = i
+            pkg_id_map[f'{author}/{name}'] = i
             doc_term_map = update_doc_term_map(words, i, doc_term_map)
             pkg_data[i] = (words, dependencies)
 
     print('\n\n> Collect results from first pass...\n')
-    dependency_map = gen_dependency_map(pkg_map, pkg_data.values())
+    dependency_map = gen_dependency_map(pkg_id_map, pkg_data.values())
 
     print('\n\n> Starting second pass...\n')
-    pkg_indexes = dict([(i, gen_index(doc_term_map, dependency_map, i, words))
-                        for i, (words, _) in pkg_data.items()])
+    pkg_index_map = dict([(i, gen_index(doc_term_map, dependency_map, i, words))
+                          for i, (words, _) in pkg_data.items()])
 
-    return pkg_indexes
+    return pkg_index_map
 
 
 ################################################################################
 
 
 def collect_package(base_dir: str,
-                    i: IndexNum,
+                    i: PT.IndexNum,
                     name: str
                     ) -> Optional[PackageData]:
     """Collect package data from HTML files.
@@ -89,10 +88,10 @@ def collect_package(base_dir: str,
     return (all_words, dependencies)
 
 
-def update_doc_term_map(words: List[str],
-                        i: IndexNum,
-                        d: Dict[str, Set[IndexNum]]
-                        ) -> Dict[str, Set[IndexNum]]:
+def update_doc_term_map(words: List[PT.Word],
+                        i: PT.IndexNum,
+                        d: Dict[PT.Word, Set[PT.IndexNum]]
+                        ) -> Dict[PT.Word, Set[PT.IndexNum]]:
     """Update map of term -> set of docs containing them."""
     for word in words:
         if word in d:
@@ -102,27 +101,28 @@ def update_doc_term_map(words: List[str],
     return d
 
 
-def gen_dependency_map(pkg_map: Dict[str, IndexNum],
+def gen_dependency_map(pkg_id_map: Dict[str, PT.IndexNum],
                        dependencies: ValuesView[PackageData],
-                       ) -> Dict[IndexNum, Count]:
+                       ) -> Dict[PT.IndexNum, Count]:
     """For each package, count the number of packages that depend on it."""
-    d: Dict[IndexNum, int] = dict()
-    for _, pkgs in dependencies:
-        for pkg in pkgs:
-            if pkg not in pkg_map:
-                print(f'Error: dependency {pkg} not found in ref map')
+    dependency_map: Dict[PT.IndexNum, Count] = dict()
+
+    for _, pkg_author_names in dependencies:
+        for author_name in pkg_author_names:
+            if author_name not in pkg_id_map:
+                print(f'Error: dependency {author_name} not found in ref map')
                 continue
 
-            pkg_index = pkg_map[pkg]
-            if pkg_index in d:
-                d[pkg_index] += 1
+            i = pkg_id_map[author_name]
+            if i not in dependency_map:
+                dependency_map[i] += 1
             else:
-                d[pkg_index] = 1
+                dependency_map[i] = 1
 
-    return d
+    return dependency_map
 
 
-def expand_meta_words(author, name) -> List[str]:
+def expand_meta_words(author, name) -> List[PT.Word]:
     """Add meta words. Repeat for extra weight."""
     author, name = author.lower(), name.lower()
 
@@ -138,16 +138,16 @@ def expand_meta_words(author, name) -> List[str]:
 # Index Gen and Scoring
 
 
-def gen_index(doc_term_map: Dict[str, Set[IndexNum]],
-              dependency_map: Dict[IndexNum, Count],
-              i: IndexNum,
-              words: List[str]
-              ) -> PackageIndex:
+def gen_index(doc_term_map: Dict[PT.Word, Set[PT.IndexNum]],
+              dependency_map: Dict[PT.IndexNum, Count],
+              i: PT.IndexNum,
+              words: List[PT.Word]
+              ) -> PT.PkgIndex:
     """Generate package index by scoring each word / term."""
 
     word_freq: Dict[str, int] = utils.count_freq(words)
     total_docs = len(doc_term_map)
-    pkg_index: PackageIndex = dict()
+    pkg_index: PT.PkgIndex = dict()
 
     for word in word_freq:
         doc_inverse_freq = get_doc_inverse_freq(total_docs,
@@ -165,8 +165,8 @@ def get_doc_inverse_freq(total_docs: int, term_doc_count: int) -> float:
     return max(1.0, math.log(total_docs / term_doc_count))
 
 
-def get_dependency_freq(i: IndexNum,
-                        dependency_map: Dict[IndexNum, Count]
+def get_dependency_freq(i: PT.IndexNum,
+                        dependency_map: Dict[PT.IndexNum, Count]
                         ) -> float:
     """Generate dependency score as log of dependency count with min of 1.0.
     Packages that are used by other packages score higher.
