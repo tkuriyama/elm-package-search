@@ -20,3 +20,13 @@ class TestDownloadHelpers:
         adds_ = [(2, 'me', 'package2', '', '1.0.0', '')]
 
         assert mods == mods_ and adds == adds_
+
+    def test_gen_version_dict(self):
+        """Test gen_version_dict"""
+
+        pkg_refs = [(0, 'me', 'package0', '', '1.0.0', ''),
+                    (1, 'me', 'package1', '', '1.0.0', '')]
+        d = {('me', 'package0'): '1.0.0',
+             ('me', 'package1'): '1.0.0'}
+
+        assert download.gen_version_dict(pkg_refs) == d
