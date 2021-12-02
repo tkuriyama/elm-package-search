@@ -6,7 +6,7 @@ This directory contains the code to run the scraper and build the search index.
 
 Requires Python 3.9+ and [Selenium](https://selenium-python.readthedocs.io/).
 
-**Build Scripts**
+## Build Scripts
 
 The full build steps are in the `all.do` file (`redo all` if you have [`redo`](https://redo.readthedocs.io/en/latest/), or running as a Shell script like `sh all.do` should also work). The key steps are:
 
@@ -19,14 +19,14 @@ The full build steps are in the `all.do` file (`redo all` if you have [`redo`](h
 
 There is also a version of the script that skips steps 2 (i.e. it just rebuils the index): `index.do`
 
-**Entry Points**
+## Entry Points
 
 - The main project entrypoint is `main.py`
   - Examining `main.py` will reveal that `download.py` manages the downloads, and the `generate_*.py` scripts manage the index generation
   - `validate_index.py` can be run independently with local data 
 
 
-**Index Generation**
+## Index Generation
 
 The index (re) generation process should yield output similar to the below. Some messages for missing packages and data is expected, as there are packages with source data missing from GitHub, invalidated dependencices, etc.
 
