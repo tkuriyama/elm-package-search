@@ -129,6 +129,32 @@ def find_missing_pkg_refs(base_path: str,
     return missing_refs
 
 
+################################################################################
+# Individual Packages
+
+
+def get_pkg(driver, base_path: str, pkg_ref: PT.PkgRef):
+    """Download package docs and store in subdirectory."""
+    index, _, name, url, _, _ = pkg_ref
+
+    dir = f'{base_path}{str(index)}'
+    if not os.path.exists(dir):
+        os.mkdir(dir)
+
+    selenium_utils.get(driver, url)
+    source = driver.page_source
+    with open(f'{dir}/README.html', 'w') as f:
+        f.write(source)
+
+    parse_pkg.parse_pkg(driver, dir, name, BASE_URL, source)
+
+    print(f'> Finished processing {index}, package {name}')
+
+
+################################################################################
+# Helpers
+
+
 def find_pkg_ref_diffs(old_refs: List[PT.PkgRef],
                        new_refs: List[PT.PkgRef]
                        ) -> Tuple[List[PT.PkgRef], List[PT.PkgRef]]:
@@ -156,33 +182,6 @@ def find_pkg_ref_diffs(old_refs: List[PT.PkgRef],
     print('')
 
     return mods, adds
-
-
-################################################################################
-# Individual Packages
-
-
-def get_pkg(driver, base_path: str, pkg_ref: PT.PkgRef):
-    """Download package docs and store in subdirectory."""
-    index, _, name, url, _, _ = pkg_ref
-
-    dir = f'{base_path}{str(index)}'
-    if not os.path.exists(dir):
-        os.mkdir(dir)
-
-    selenium_utils.get(driver, url)
-    source = driver.page_source
-    with open(f'{dir}/README.html', 'w') as f:
-        f.write(source)
-
-    parse_pkg.parse_pkg(driver, dir, name, BASE_URL, source)
-
-    print(f'> Finished processing {index}, package {name}')
-
-
-
-################################################################################
-# Helpers
 
 
 def gen_version_dict(pkg_refs: List[PT.PkgRef]
