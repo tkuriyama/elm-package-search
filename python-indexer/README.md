@@ -22,8 +22,8 @@ There is also a version of the script that skips steps 2 (i.e. it just rebuils t
 ## Entry Points
 
 - The main project entrypoint is `main.py`
-  - Examining `main.py` will reveal that `download.py` manages the downloads, and the `generate_*.py` scripts manage the index generation
-  - `validate_index.py` can be run independently with local data 
+- Examining `main.py` will reveal that `download.py` manages the downloads, and the `generate_*.py` scripts manage the index generation
+- `validate_index.py` can be run independently with local data 
 
 
 ## Index Generation
