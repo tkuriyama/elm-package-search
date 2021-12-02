@@ -6,19 +6,29 @@ This directory contains the code to run the scraper and build the search index.
 
 Requires Python 3.9+ and [Selenium](https://selenium-python.readthedocs.io/).
 
-The full build steps are in the `all.do` file (`redo all` if you have [`redp`](https://redo.readthedocs.io/en/latest/), or running as a Shell script like `sh all.do` should also work).
+**Build Scripts**
 
-The entry point to the Python program is `main.py`. To trigger a full download of package data and index rebuild:
+The full build steps are in the `all.do` file (`redo all` if you have [`redo`](https://redo.readthedocs.io/en/latest/), or running as a Shell script like `sh all.do` should also work). The key steps are:
 
-`python src/main.py 1`
+1. run all tests and checks
+2. download Elm package index files (by default, get only updates vs existing local data)
+3. generate the search index
+4. save the search index as a Python pickle file
+5. run some validation on the search index
+6. output the search index to Elm files
 
-It is important to start from this directory (the parent of `src` as there are relative paths hard-coded for outputting downloaded data to the `package_data` directory.
+There is also a version of the script that skips steps 2 (i.e. it just rebuils the index): `index.do`
 
-By default, the script does not trigger a (re)download of data. Calling main.main() directly, or like so without the command-line flag, will simply rebuild the index.
+**Entry Points**
 
-`python src/main.py`
+- The main project entrypoint is `main.py`
+  - Examining `main.py` will reveal that `download.py` manages the downloads, and the `generate_*.py` scripts manage the index generation
+  - `validate_index.py` can be run independently with local data 
 
-The index (re) generation process should yield output similar to the below:
+
+**Index Generation**
+
+The index (re) generation process should yield output similar to the below. Some messages for missing packages and data is expected, as there are packages with source data missing from GitHub, invalidated dependencices, etc.
 
 ```shell
 > Starting first pass...
