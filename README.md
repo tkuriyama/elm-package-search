@@ -8,7 +8,7 @@ See the [blog post](LINK) for motivation and details.
 
 ## Python Scraper and Indexer
 
-The code to scrape the Elm package index and build the search index is written in Python 3.9, in the [`python-indexer`](LINK) directory.
+The code to scrape the Elm package index and build the search index is written in Python 3.9, in the [`python-indexer`](https://github.com/tkuriyama/elm-package-search/tree/master/python-indexer) directory.
 
 ## Elm Search
 
