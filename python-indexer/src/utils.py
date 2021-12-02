@@ -1,3 +1,8 @@
+"""Misc utils used by multipel modules.
+"""
+
+
+import parser_types as PT # type: ignore
 from typing import Dict, List, TypeVar # type: ignore
 
 
@@ -27,3 +32,19 @@ def count_freq(items: List[T]) -> Dict[T, int]:
             d[item] = 1
 
     return d
+
+
+
+################################################################################
+# IO
+
+
+def load_pkg_refs(fname: str) -> List[PT.PkgRef]:
+    """Load package index tuples from file."""
+    with open(fname, 'r') as f:
+        lines = [line.split('\t')
+                 for line in f.readlines()
+                 if line.strip()]
+
+    return [(int(line[0]), line[1], line[2], line[3], line[4], line[5])
+            for line in lines]

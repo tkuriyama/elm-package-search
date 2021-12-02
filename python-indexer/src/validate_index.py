@@ -5,8 +5,8 @@ import math # type: ignore
 import nltk_utils # type: ignore
 import parser_types as PT # type: ignore
 import pickle # type: ignore
-import utils # type: ignore
 from typing import Dict, List, Tuple # type: ignore
+import utils # type: ignore
 
 
 ################################################################################
@@ -14,7 +14,7 @@ from typing import Dict, List, Tuple # type: ignore
 def test_from_files(pkg_refs_fname: str,
                          pkg_index_map_fname: str):
     """Run validation tests from local files."""
-    pkg_refs = load_pkg_refs(pkg_refs_fname)
+    pkg_refs = utils.load_pkg_refs(pkg_refs_fname)
     pkg_index_map = load_pkg_index_map(pkg_index_map_fname)
 
     test_find_self(pkg_refs, pkg_index_map)
@@ -138,16 +138,8 @@ def score_similarity(q_terms: List[Tuple[PT.Word, float]],
 
 def load_pkg_ref_dict(fname) -> PT.PkgRefMap:
     """Load package listings to PkgRefMap."""
-    pkg_refs = load_pkg_refs(fname)
+    pkg_refs = utils.load_pkg_refs(fname)
     return pkg_refs_to_dict(pkg_refs)
-
-
-def load_pkg_refs(fname) -> List[PT.PkgRef]:
-    """Load package listings."""
-    with open(fname, 'r') as f:
-        lines = [line.split('\t') for line in f.readlines()]
-    return [(int(i), author, name, url, version, desc)
-            for i, author, name, url, version, desc in lines]
 
 
 def pkg_refs_to_dict(pkg_refs: List[PT.PkgRef]

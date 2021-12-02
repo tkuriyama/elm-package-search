@@ -13,5 +13,5 @@ echo "\n> Running mypy" >&2
 mypy src >&2
 
 echo "\n> Run main" >&2
-python src/main.py >&2
+python src/main.py 1 >&2
 
