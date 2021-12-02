@@ -15,7 +15,8 @@ URL = str
 version = str
 Description = str
 
-PackageListing = Tuple[IndexNum, Author, Name, URL, version, Description]
+PkgRef = Tuple[IndexNum, Author, Name, URL, version, Description]
+PkgRefMap = Dict[IndexNum, Tuple[Author, Name]]
 
 
 ################################################################################
@@ -25,5 +26,5 @@ PackageListing = Tuple[IndexNum, Author, Name, URL, version, Description]
 Word = str
 
 
-PackageIndex = Dict[Word, float]
-PackageIndexMap = Dict[IndexNum, PackageIndex]
+PkgIndex = Dict[Word, float]
+PkgIndexMap = Dict[IndexNum, PkgIndex]
