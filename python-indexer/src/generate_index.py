@@ -115,9 +115,9 @@ def gen_dependency_map(pkg_id_map: Dict[str, PT.IndexNum],
 
             i = pkg_id_map[author_name]
             if i not in dependency_map:
-                dependency_map[i] += 1
-            else:
                 dependency_map[i] = 1
+            else:
+                dependency_map[i] += 1
 
     return dependency_map
 
