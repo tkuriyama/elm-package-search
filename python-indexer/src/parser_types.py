@@ -12,10 +12,10 @@ IndexNum = int
 Author = str
 Name = str
 URL = str
-version = str
+Version = str
 Description = str
 
-PkgRef = Tuple[IndexNum, Author, Name, URL, version, Description]
+PkgRef = Tuple[IndexNum, Author, Name, URL, Version, Description]
 PkgRefMap = Dict[IndexNum, Tuple[Author, Name]]
 
 

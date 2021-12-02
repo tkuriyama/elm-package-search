@@ -2,17 +2,17 @@
 """
 
 import elm_utils # type: ignore
-from parser_types import PackageListing, PackageIndexMap # type: ignore
-from typing import List, Tuple # type: ignore
+import parser_types as PT # type: ignore
+from types import List, Tuple # type: ignore
 
 
 ################################################################################
 # Package Listing
 
 
-def generate_package_ref(fname: str, pkg_ref: List[PackageListing]):
+def gen_pkg_refs(fname: str, pkg_refs: List[PT.PkgRef]):
     """Convert package listings data to Elm string and write to file."""
-    pkg_ref_ = reformat_ref(pkg_ref)
+    pkg_refs_ = reformat_refs(pkg_refs)
 
     module = elm_utils.module('PackageListing', ['data'])
 
@@ -22,31 +22,32 @@ def generate_package_ref(fname: str, pkg_ref: List[PackageListing]):
     s += elm_utils.function('data',
                             type_sig,
                             [],
-                            elm_utils.nested_to_elm_str(pkg_ref_, 1))
+                            elm_utils.nested_to_elm_str(pkg_refs_, 1))
 
     with open(fname, 'w') as f:
         f.write(s)
 
-def reformat_ref(pkg_ref: List[PackageListing]
-                ) -> List[Tuple[Tuple[int, str, str], Tuple[str, str, str]]]:
+def reformat_refs(pkg_refs: List[PT.PkgRef]
+                ) -> List[Tuple[Tuple[PT.IndexNum, PT.Author, PT.Name],
+                                Tuple[PT.URL, PT.Version, PT.Description]]]:
     """Reformat package listing for output."""
-    output = []
-    for i, author, name, url, version, desc in pkg_ref:
+    pkg_refs_ = []
+    for i, author, name, url, version, desc in pkg_refs:
         if not desc:
             desc = ""
         else:
             desc = desc.replace('"', '\'')
-        output.append(((i, author, name), (url, version, desc)))
-    return output
+        pkg_refs_.append(((i, author, name), (url, version, desc)))
+    return pkg_refs_
 
 
 ################################################################################
 # Package index
 
 
-def generate_index(fname: str, pkgs: PackageIndexMap):
+def generate_index(fname: str, pkg_index_map: PT.PkgIndexMap):
     """Convert package index data to Elm string and write to file."""
-    pkgs_ = reformat_index(pkgs)
+    pkg_index_map_ = reformat_index_map(pkg_index_map)
 
     module = elm_utils.module('PackageIndex', ['data'])
 
@@ -56,14 +57,14 @@ def generate_index(fname: str, pkgs: PackageIndexMap):
     s += elm_utils.function('data',
                             type_sig,
                             [],
-                            elm_utils.nested_to_elm_str(pkgs_, 1))
+                            elm_utils.nested_to_elm_str(pkg_index_map_, 1))
 
     with open(fname, 'w') as f:
         f.write(s)
 
 
-def reformat_index(pkgs: PackageIndexMap, 
-                ) -> List[Tuple[int, List[Tuple[str, float]]]]:
+def reformat_index_map(pkg_index_map: PT.PkgIndexMap, 
+                ) -> List[Tuple[PT.IndexNum, List[Tuple[PT.Word, float]]]]:
     """Reformat package listing for output."""
     return [(i, list(pkg_dict.items()))
-            for i, pkg_dict in pkgs.items()]
+            for i, pkg_dict in pkg_index_map.items()]
