@@ -6,7 +6,7 @@ handling.
 """
 
 from bs4 import BeautifulSoup # type: ignore
-from parser_types import PackageListing # type: ignore
+import parser_types as PT # type: ignore
 import re # type: ignore
 from typing import List # type: ignore
 
@@ -21,8 +21,8 @@ BASE_URL = 'https://package.elm-lang.org'
 ################################################################################
 
 
-def parse_index(fname: str) -> List[PackageListing]:
-    """Parse package index."""
+def parse_refs(fname: str) -> List[PT.PkgRef]:
+    """Parse package index listings."""
     with open(fname, 'r') as f:
         data = f.read()
     soup = BeautifulSoup(data, 'html.parser')
@@ -32,7 +32,7 @@ def parse_index(fname: str) -> List[PackageListing]:
             for i, listing in enumerate(listings)]
 
 
-def parse_listing(index: int, listing: str) -> PackageListing:
+def parse_listing(index: int, listing: str) -> PT.PkgRef:
     """Parse package listing into tuple of strings:
     (index, author, name, latest url, latest version, description)
     """

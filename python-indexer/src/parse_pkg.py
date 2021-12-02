@@ -17,7 +17,7 @@ LinkPair = Tuple[Title, Url]
 
 
 
-def parse_package(driver, dir: str, name: str, base_url: str, source: str):
+def parse_pkg(driver, dir: str, name: str, base_url: str, source: str):
     """Parse HTML and download additional data to dir."""
     soup = BeautifulSoup(source, 'html.parser')
     links = [str(link)
