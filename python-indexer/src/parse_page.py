@@ -1,9 +1,9 @@
 """Parse HTML pages.
 """
 
-
 from bs4 import BeautifulSoup # type: ignore
 import nltk_utils # type: ignore
+import parse.types as PT # type: ignore
 import re # type: ignore
 from typing import List, Tuple # type: ignore
 
@@ -12,11 +12,12 @@ from typing import List, Tuple # type: ignore
 # Parse Pages other than About
 
 
-def parse_page(html: str) -> List[str]:
+def parse_page(html: str) -> List[PT.Word]:
     """Parse page, return tokenized and stemmed plaintext words."""
     text = extract_text(html)
     tokens = nltk_utils.tokenize_and_filter(text)
     return nltk_utils.stem(tokens)
+
 
 def extract_text(html: str) -> str:
     """Extract plaintext from HTML."""
@@ -28,7 +29,7 @@ def extract_text(html: str) -> str:
 ################################################################################
 # Parse About
 
-def parse_about(html: str) -> Tuple[List[str], List[str]]:
+def parse_about(html: str) -> Tuple[List[PT.Word], List[str]]:
     """Parse about page, return plaintext and list of dependencies."""
     soup = BeautifulSoup(html, 'html.parser')
 
