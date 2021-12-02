@@ -42,10 +42,10 @@ def reformat_refs(pkg_refs: List[PT.PkgRef]
 
 
 ################################################################################
-# Package index
+# Package index map
 
 
-def gen_index(fname: str, pkg_index_map: PT.PkgIndexMap):
+def gen_index_map(fname: str, pkg_index_map: PT.PkgIndexMap):
     """Convert package index data to Elm string and write to file."""
     pkg_index_map_ = reformat_index_map(pkg_index_map)
 

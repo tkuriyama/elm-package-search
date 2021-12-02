@@ -30,8 +30,12 @@ REF_PATH = f'{BASE_PATH}index.tsv'
 ################################################################################
 
 
-def main(redownload=False):
-    """Retrieve and parse Elm package index."""
+def main(redownload=False, diffs_only=True):
+    """Retrieve and parse Elm package index.
+    By the default args:
+       - do not trigger download
+       - download is specified, only get diffs
+    """
     if redownload:
         download()
 
@@ -42,9 +46,9 @@ def main(redownload=False):
         pickle.dump(pkg_index_map, f)
     validate_index.test_find_self(pkg_refs, pkg_index_map)
 
-    generate_elm_index.gen_pkg_ref(f'{BASE_PATH}PackageListing.elm',
-                                   pkg_refs)
-    generate_elm_index.gen_pkg_index(f'{BASE_PATH}PackageIndex.elm',
+    generate_elm_index.gen_pkg_refs(f'{BASE_PATH}PackageListing.elm',
+                                    pkg_refs)
+    generate_elm_index.gen_index_map(f'{BASE_PATH}PackageIndex.elm',
                                       pkg_index_map)
 
 def download():
@@ -127,6 +131,8 @@ def get_pkg(driver, pkg_ref: PT.PkgRef):
 if __name__ == '__main__':
     if len(sys.argv) > 1:
         main(int(sys.argv[1]))
+    elif len(sys.argv) > 2:
+        main(int(sys.argv[1]), int(sys.argv[2]))
     else:
         main()
 
