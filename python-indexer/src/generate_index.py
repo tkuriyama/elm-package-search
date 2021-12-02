@@ -60,7 +60,7 @@ def generate(base_dir: str, pkg_refs: List[PT.PkgRef]) -> PT.PkgIndexMap:
 
 def collect_package(base_dir: str,
                     i: PT.IndexNum,
-                    name: str
+                    name: PT.Name
                     ) -> Optional[PackageData]:
     """Collect package data from HTML files.
     Return tuple of (tokenize and stemmed words, list of dependencies).
@@ -145,7 +145,7 @@ def gen_index(doc_term_map: Dict[PT.Word, Set[PT.IndexNum]],
               ) -> PT.PkgIndex:
     """Generate package index by scoring each word / term."""
 
-    word_freq: Dict[str, int] = utils.count_freq(words)
+    word_freq: Dict[PT.Word, Count] = utils.count_freq(words)
     total_docs = len(doc_term_map)
     pkg_index: PT.PkgIndex = dict()
 
