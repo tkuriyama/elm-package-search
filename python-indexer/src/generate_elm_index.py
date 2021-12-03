@@ -18,7 +18,7 @@ def gen_pkg_refs(fname: str, pkg_refs: List[PT.PkgRef]):
 
     s = f'{module}\n\n{elm_utils.delim()}\n\n'
 
-    type_sig = '((Int, String, String), (String, String, String))'
+    type_sig = 'List ((Int, String, String), (String, String, String))'
     s += elm_utils.function('data',
                             type_sig,
                             [],
