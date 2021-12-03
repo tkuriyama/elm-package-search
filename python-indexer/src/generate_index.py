@@ -68,7 +68,7 @@ def collect_package(base_dir: str,
     fnames = os.listdir(f'{base_dir}{i}')
 
     if len(fnames) <= 2:
-        print(f'\nSouce missing, skippiing pkg {i} {name}')
+        print(f'\nSouce missing, skiping pkg {i} {name}')
         return None
 
     all_words = []
