@@ -14,7 +14,7 @@ from typing import List, Tuple # type: ignore
 
 def parse_page(html: str) -> List[PT.Word]:
     """Parse page, return tokenized and stemmed plaintext words."""
-    words = extract_text(html) + extract_code_names(html)
+    words = extract_text(html) + ' ' + ' '.join(extract_code_names(html))
     tokens = nltk_utils.tokenize_and_filter(words)
     return nltk_utils.stem(tokens)
 
@@ -26,7 +26,7 @@ def extract_text(html: str) -> str:
     return ' '.join(plaintexts)
 
 
-def extract_code_names(html: str) -> str:
+def extract_code_names(html: str) -> List[PT.Word]:
     """Extract type and function names from HTML."""
     soup = BeautifulSoup(html, 'html.parser')
     headers = soup.find_all('div', class_='docs-header')
@@ -46,7 +46,7 @@ def extract_code_names(html: str) -> str:
                     names.append(g[0])
 
 
-    return ' '.join(names)
+    return names
 
 
 
