@@ -29,7 +29,7 @@ view model =
             , E.centerX
             , E.spacing 10
             ]
-            [ titleView
+            [ titleView model.timestamp
             , noteView
             , searchInputView model.queryString
             , resultsView model.queryResults
@@ -42,33 +42,38 @@ view model =
 -- Title, Headers
 
 
-titleView : E.Element msg
-titleView =
+titleView : String -> E.Element msg
+titleView timestamp =
     E.row
         [ E.centerX
         ]
         [ E.el
             [ Font.size 26
+            , E.alignBottom
             ]
             (E.el
-                [ E.onRight links
+                [ E.onRight <| links timestamp
                 ]
                 (E.text "Elm Package Search")
             )
         ]
 
 
-links : E.Element msg
-links =
+links : String -> E.Element msg
+links timestamp =
     E.row
-        [ Font.size 16
+        [ Font.size 14
         , E.paddingXY 30 0
-        , E.alignBottom
-        , E.spacing 10
-        , Font.color <| E.rgb255 173 216 230
+        , E.centerY
+        , E.spacingXY 20 0
         ]
-        [ E.link
-            [ Font.underline ]
+        [ E.el
+            []
+            (E.text <| "Updated " ++ timestamp)
+        , E.link
+            [ Font.underline
+            , Font.color <| E.rgb255 173 216 230
+            ]
             { url = "https://github.com/tkuriyama/elm-package-search"
             , label = E.text "Source"
             }

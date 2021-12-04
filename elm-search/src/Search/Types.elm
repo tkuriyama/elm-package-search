@@ -16,6 +16,7 @@ type alias Flags =
 type alias Model =
     { windowWidth : Int
     , windowHeight : Int
+    , timestamp : String
     , pkgRefMap : PkgRefMap
     , indexMaps : List ( Int, PkgIndexMap )
     , queryString : String

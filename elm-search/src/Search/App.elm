@@ -5,6 +5,7 @@ import Browser.Events exposing (onResize)
 import Dict
 import PackageIndex
 import PackageListing
+import PackageTimestamp
 import Search.Query as Query
 import Search.Types exposing (..)
 import Search.Utils as Utils
@@ -42,6 +43,7 @@ init flags =
     in
     ( { windowWidth = round windowW
       , windowHeight = round windowH
+      , timestamp = PackageTimestamp.data
       , pkgRefMap = loadPkgRefMap PackageListing.data
       , indexMaps = loadIndexMaps PackageIndex.data
       , queryString = ""
