@@ -2,9 +2,13 @@
 
 Experiment to build a better (deeper-indexed) search for Elm packages.
 
-The search algorithm is implemented with a vector space index, with a modified term-frequency inverse-document-frequency factor weighting.
+**[> Try the live app][https://tarokuriyama.com/elmsearch/]**
 
-See the [blog post](LINK) for motivation and details.
+* The search algorithm is implemented with a vector space index, with a modified term-frequency inverse-document-frequency factor weighting.
+
+* See the [blog post](LINK) for motivation and details.
+
+
 
 ## Python Scraper and Indexer
 
@@ -12,4 +16,4 @@ The code to scrape the Elm package index and build the search index is written i
 
 ## Elm Search
 
-The code for the UI and query implementation is written in Elm, in the [`elm-search`](LINK) directory.
+The code for the UI and query implementation is written in Elm, in the [`elm-search`](https://github.com/tkuriyama/elm-package-search/tree/master/elm-search) directory.
