@@ -534,7 +534,7 @@
 
 267	NeoVier	elm-review-no-function-outside-of-modules	https://package.elm-lang.org/packages/NeoVier/elm-review-no-function-outside-of-modules/latest	2.0.0	Provides elm-review rules to forbid using functions outside of certain modules
 
-268	NoRedInk	datetimepicker-legacy	https://package.elm-lang.org/packages/NoRedInk/datetimepicker-legacy/latest	1.0.5	Reusable date and time picker view
+268	NoRedInk	datetimepicker-legacy	https://package.elm-lang.org/packages/NoRedInk/datetimepicker-legacy/latest	3.0.0	Reusable date and time picker view
 
 269	NoRedInk	elm-compare	https://package.elm-lang.org/packages/NoRedInk/elm-compare/latest	2.0.0	Tools for composing comparison functions
 
@@ -2913,3 +2913,5 @@
 1456	zwilias	json-decode-exploration	https://package.elm-lang.org/packages/zwilias/json-decode-exploration/latest	6.0.0	JSON decoding with warnings and usage tracking
 
 1457	mewhit	prismicio	https://package.elm-lang.org/packages/mewhit/prismicio/latest	1.0.0	Elm SDK for prismic.io
+1458	jxxcarlson	elm-tree-builder	https://package.elm-lang.org/packages/jxxcarlson/elm-tree-builder/latest	1.0.1	Build rose trees from a string
+1459	ken-matsui	html-styled-extra	https://package.elm-lang.org/packages/ken-matsui/html-styled-extra/latest	1.0.0	Additional functions for working with Html.Styled

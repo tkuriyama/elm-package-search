@@ -2422,7 +2422,7 @@ data =
         , "datetimepicker-legacy"
         )
       , ( "https://package.elm-lang.org/packages/NoRedInk/datetimepicker-legacy/latest"
-        , "1.0.5"
+        , "3.0.0"
         , "Reusable date and time picker view\n"
         )
       )
@@ -13124,7 +13124,25 @@ data =
         )
       , ( "https://package.elm-lang.org/packages/mewhit/prismicio/latest"
         , "1.0.0"
-        , "Elm SDK for prismic.io"
+        , "Elm SDK for prismic.io\n"
+        )
+      )
+    , ( ( 1458
+        , "jxxcarlson"
+        , "elm-tree-builder"
+        )
+      , ( "https://package.elm-lang.org/packages/jxxcarlson/elm-tree-builder/latest"
+        , "1.0.1"
+        , "Build rose trees from a string\n"
+        )
+      )
+    , ( ( 1459
+        , "ken-matsui"
+        , "html-styled-extra"
+        )
+      , ( "https://package.elm-lang.org/packages/ken-matsui/html-styled-extra/latest"
+        , "1.0.0"
+        , "Additional functions for working with Html.Styled"
         )
       )
     ]
