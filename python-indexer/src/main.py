@@ -4,6 +4,7 @@
 import download # type: ignore
 import generate_elm_index # type: ignore
 import generate_index # type: ignore
+import generate_timestamp # type: ignore
 import os # type: ignore
 import pickle # type: ignore
 import sys # type: ignore
@@ -42,6 +43,7 @@ def main(redownload = False, diffs_only = True):
                                     pkg_refs)
     generate_elm_index.gen_index_map(f'{BASE_PATH}PackageIndex.elm',
                                       pkg_index_map)
+    generate_timestamp.gen_timestmap(f'{BASE_PATH}PackageTimestamp.elm')
 
 
 ################################################################################
