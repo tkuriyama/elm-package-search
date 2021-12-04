@@ -2,7 +2,7 @@
 
 Experiment to build a better (deeper-indexed) search for Elm packages.
 
-**[> Try the live app][https://tarokuriyama.com/elmsearch/]**
+**[> Try the live app](https://tarokuriyama.com/elmsearch/)**
 
 * The search algorithm is implemented with a vector space index, with a modified term-frequency inverse-document-frequency factor weighting.
 
