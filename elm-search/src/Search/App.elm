@@ -57,7 +57,7 @@ loadPkgRefMap :
     -> PkgRefMap
 loadPkgRefMap =
     let
-        convert ( ( i, name, author ), ( url, version, desc ) ) =
+        convert ( ( i, author, name ), ( url, version, desc ) ) =
             ( i
             , { author = author
               , name = name

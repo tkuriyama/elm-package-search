@@ -25,7 +25,7 @@ view model =
         , E.paddingXY 60 20
         ]
         (E.column
-            [ E.width <| E.px <| round <| toFloat model.windowWidth * 0.7
+            [ E.width <| E.px <| round <| toFloat model.windowWidth * 0.6
             , E.centerX
             , E.spacing 10
             ]
@@ -48,7 +48,7 @@ titleView =
         [ E.centerX
         ]
         [ E.el
-            [ Font.size 24
+            [ Font.size 26
             ]
             (E.el
                 [ E.onRight links
@@ -83,7 +83,7 @@ noteView =
         ]
         [ E.paragraph
             [ Font.size 14 ]
-            [ E.text "Search the Elm package index by keywords, including authors, package names, function and type names..."
+            [ E.text "Search the Elm package index by keywords, including authors, package namesyes\n, function and type names..."
             ]
         ]
 
@@ -97,11 +97,12 @@ searchInputView : String -> E.Element Msg
 searchInputView queryString =
     Input.search
         [ onEnter RunQuery
+        , Border.width 2
         ]
         { onChange = UpdateQuery
         , text = queryString
-        , placeholder = Nothing
-        , label = Input.labelHidden "Search Terms"
+        , placeholder = Just (Input.placeholder [] (E.text "Search keywords..."))
+        , label = Input.labelHidden "Search Keywords Input"
         }
 
 
@@ -114,11 +115,48 @@ resultsView : List QueryResult -> E.Element msg
 resultsView results =
     E.column
         [ E.width E.fill
+        , E.paddingXY 0 10
+        , E.spacing 25
         ]
         [ E.el
             []
             (E.text <| String.fromInt (List.length results) ++ " Results")
+        , E.column
+            [ E.spacing 45
+            ]
+            (List.map resultView results)
         ]
+
+
+resultView : QueryResult -> E.Element msg
+resultView ( score, i, maybePkgRef ) =
+    case maybePkgRef of
+        Nothing ->
+            E.none
+
+        Just pkgRef ->
+            E.column
+                [ E.spacing 10 ]
+                [ E.row
+                    [ E.spacing 20 ]
+                    [ E.link
+                        [ Font.size 24
+                        , Font.color <| E.rgba255 60 60 250 0.8
+                        , E.mouseOver [ E.alpha 0.5 ]
+                        ]
+                        { url = pkgRef.url
+                        , label = E.text <| pkgRef.author ++ "/" ++ pkgRef.name
+                        }
+                    , E.el
+                        [ Font.size 14
+                        , E.alignBottom
+                        ]
+                        (E.text <| "v." ++ pkgRef.version)
+                    ]
+                , E.paragraph
+                    []
+                    [ E.text pkgRef.desc ]
+                ]
 
 
 
