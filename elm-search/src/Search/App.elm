@@ -106,7 +106,10 @@ update msg model =
             )
 
         UpdateQuery s ->
-            ( { model | queryString = s, queryTokens = Utils.tokenize s }
+            ( { model
+                | queryString = s
+                , queryTokens = Utils.tokenize s |> Utils.stemWords
+              }
             , Cmd.none
             )
 
