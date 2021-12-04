@@ -69,7 +69,7 @@ links =
         ]
         [ E.link
             [ Font.underline ]
-            { url = "https://tkuriyama.github.io/general/2021/10/30/eratosthenes-elm-generator.html"
+            { url = "https://github.com/tkuriyama/elm-package-search"
             , label = E.text "Source"
             }
         ]
@@ -83,7 +83,7 @@ noteView =
         ]
         [ E.paragraph
             [ Font.size 14 ]
-            [ E.text "Search the Elm package index by keywords, including authors, package namesyes\n, function and type names..."
+            [ E.text "Search for Elm packages by keywords, including authors, package names, function and type names..."
             ]
         ]
 
