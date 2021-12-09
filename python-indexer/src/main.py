@@ -43,7 +43,7 @@ def main(redownload = False, diffs_only = True):
                                     pkg_refs)
     generate_elm_index.gen_index_map(f'{BASE_PATH}PackageIndex.elm',
                                       pkg_index_map)
-    generate_timestamp.gen_timestmap(f'{BASE_PATH}PackageTimestamp.elm')
+    generate_timestamp.gen_timestamp(f'{BASE_PATH}PackageTimestamp.elm')
 
 
 ################################################################################
