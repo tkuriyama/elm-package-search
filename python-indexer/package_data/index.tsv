@@ -98,7 +98,7 @@
 
 49	Janiczek	cmd-extra	https://package.elm-lang.org/packages/Janiczek/cmd-extra/latest	1.1.0	Pipeline-friendly helpers for working with Cmds
 
-50	Janiczek	elm-bidict	https://package.elm-lang.org/packages/Janiczek/elm-bidict/latest	3.0.0	A bidirectional Dict data structure
+50	Janiczek	elm-bidict	https://package.elm-lang.org/packages/Janiczek/elm-bidict/latest	3.1.0	A bidirectional Dict data structure
 
 51	Janiczek	elm-graph	https://package.elm-lang.org/packages/Janiczek/elm-graph/latest	2.0.1	A graph data structure with a nice API
 
@@ -328,7 +328,7 @@
 
 164	Confidenceman02	elm-animate-height	https://package.elm-lang.org/packages/Confidenceman02/elm-animate-height/latest	2.1.5	Animate a containers height
 
-165	Confidenceman02	elm-select	https://package.elm-lang.org/packages/Confidenceman02/elm-select/latest	2.0.0	A Handsome configurable select inspired by Culture Amp's Kaizen select.
+165	Confidenceman02	elm-select	https://package.elm-lang.org/packages/Confidenceman02/elm-select/latest	3.0.0	A Handsome configurable select inspired by Culture Amp's Kaizen select.
 
 166	ContaSystemer	elm-angularjs-custom-element	https://package.elm-lang.org/packages/ContaSystemer/elm-angularjs-custom-element/latest	1.1.1	The package contains HTML functions to reuse AngularJS components in Elm
 
@@ -544,7 +544,7 @@
 
 272	NoRedInk	elm-formatted-text-test-helpers	https://package.elm-lang.org/packages/NoRedInk/elm-formatted-text-test-helpers/latest	1.0.1	A type for representing formatted text
 
-273	NoRedInk	elm-json-decode-pipeline	https://package.elm-lang.org/packages/NoRedInk/elm-json-decode-pipeline/latest	1.0.0	Use pipelines to build JSON Decoders.
+273	NoRedInk	elm-json-decode-pipeline	https://package.elm-lang.org/packages/NoRedInk/elm-json-decode-pipeline/latest	1.0.1	Use pipelines to build JSON Decoders.
 
 274	NoRedInk	elm-plot-19	https://package.elm-lang.org/packages/NoRedInk/elm-plot-19/latest	1.0.0	SVG charts in Elm.
 
@@ -576,7 +576,7 @@
 
 288	NoRedInk	list-selection	https://package.elm-lang.org/packages/NoRedInk/list-selection/latest	1.3.1	A list that might have at most one selected item
 
-289	NoRedInk	noredink-ui	https://package.elm-lang.org/packages/NoRedInk/noredink-ui/latest	15.1.0	UI Widgets we use at NRI
+289	NoRedInk	noredink-ui	https://package.elm-lang.org/packages/NoRedInk/noredink-ui/latest	15.2.0	UI Widgets we use at NRI
 
 290	NoRedInk	style-elements	https://package.elm-lang.org/packages/NoRedInk/style-elements/latest	3.0.0	Legacy fork of mdgriffith/style-elements to fix a bug in an indirect dependency
 
@@ -844,7 +844,7 @@
 
 422	arnau	elm-objecthash	https://package.elm-lang.org/packages/arnau/elm-objecthash/latest	2.2.1	Objecthash in Elm
 
-423	arowM	elm-classname	https://package.elm-lang.org/packages/arowM/elm-classname/latest	1.0.1	A brief module for custom `class` attributes.
+423	arowM	elm-classname	https://package.elm-lang.org/packages/arowM/elm-classname/latest	1.0.2	A brief module for custom `class` attributes.
 
 424	arowM	elm-css-modules-helper	https://package.elm-lang.org/packages/arowM/elm-css-modules-helper/latest	1.0.1	Provide helper functions to handle CSS modules in Elm without hacks
 
@@ -870,7 +870,7 @@
 
 435	arowM	elm-reference	https://package.elm-lang.org/packages/arowM/elm-reference/latest	1.0.7	An immutable approach imitating references of mutable languages.
 
-436	arowM	elm-thread	https://package.elm-lang.org/packages/arowM/elm-thread/latest	2.2.0	Translate chronological specifications verbatim into applications.
+436	arowM	elm-thread	https://package.elm-lang.org/packages/arowM/elm-thread/latest	3.0.0	Translate chronological specifications verbatim into applications.
 
 437	arowM	elm-update-builder	https://package.elm-lang.org/packages/arowM/elm-update-builder/latest	1.3.1	 
 
@@ -1222,7 +1222,7 @@
 
 611	dillonkearns	elm-bcp47-language-tag	https://package.elm-lang.org/packages/dillonkearns/elm-bcp47-language-tag/latest	1.0.1	BCP 47 language tags, ISO 639-1 language codes, and ISO 3166-1 country codes.
 
-612	dillonkearns	elm-cli-options-parser	https://package.elm-lang.org/packages/dillonkearns/elm-cli-options-parser/latest	3.0.1	Type-safe command line options parsing.
+612	dillonkearns	elm-cli-options-parser	https://package.elm-lang.org/packages/dillonkearns/elm-cli-options-parser/latest	3.1.0	Type-safe command line options parsing.
 
 613	dillonkearns	elm-graphql	https://package.elm-lang.org/packages/dillonkearns/elm-graphql/latest	5.0.8	Type-safe GraphQL queries in Elm.
 
@@ -1638,7 +1638,7 @@
 
 819	imjoehaines	afinn-165-elm	https://package.elm-lang.org/packages/imjoehaines/afinn-165-elm/latest	1.0.0	The AFINN-165 dataset as an Elm dict
 
-820	indicatrix	elm-chartjs-webcomponent	https://package.elm-lang.org/packages/indicatrix/elm-chartjs-webcomponent/latest	2.0.1	Elm types and pipeline functions to easily work with Chartjs
+820	indicatrix	elm-chartjs-webcomponent	https://package.elm-lang.org/packages/indicatrix/elm-chartjs-webcomponent/latest	3.0.0	Elm types and pipeline functions to easily work with Chartjs
 
 821	indicatrix	elm-input-extra	https://package.elm-lang.org/packages/indicatrix/elm-input-extra/latest	1.0.1	Commonly used Html element with extra functionality
 
@@ -1740,7 +1740,7 @@
 
 870	jfmengels	elm-review-the-elm-architecture	https://package.elm-lang.org/packages/jfmengels/elm-review-the-elm-architecture/latest	1.0.3	Provides elm-review rules to improve your use of The Elm Architecture
 
-871	jfmengels	elm-review-unused	https://package.elm-lang.org/packages/jfmengels/elm-review-unused/latest	1.1.19	Provides elm-review rules to detect unused elements in your Elm project
+871	jfmengels	elm-review-unused	https://package.elm-lang.org/packages/jfmengels/elm-review-unused/latest	1.1.20	Provides elm-review rules to detect unused elements in your Elm project
 
 872	jfmengels	lint-debug	https://package.elm-lang.org/packages/jfmengels/lint-debug/latest	1.0.1	Lint plugin for `elm-lint` that provides rules to detect debug code.
 
@@ -2382,7 +2382,7 @@
 
 1191	rametta	elm-datetime-picker	https://package.elm-lang.org/packages/rametta/elm-datetime-picker/latest	2.0.0	a datetime picker component
 
-1192	ren-lang	compiler	https://package.elm-lang.org/packages/ren-lang/compiler/latest	10.0.0	The compiler for Ren: a dynamically typed, functional scripting language.
+1192	ren-lang	compiler	https://package.elm-lang.org/packages/ren-lang/compiler/latest	10.0.1	The compiler for Ren: a dynamically typed, functional scripting language.
 
 1193	renanpvaz	elm-bem	https://package.elm-lang.org/packages/renanpvaz/elm-bem/latest	1.0.2	BEM utilities for classes
 
@@ -2862,7 +2862,7 @@
 
 1431	y047aka	elm-hsl-color	https://package.elm-lang.org/packages/y047aka/elm-hsl-color/latest	1.0.2	The HSL version of elm-color
 
-1432	y047aka	elm-reset-css	https://package.elm-lang.org/packages/y047aka/elm-reset-css/latest	2.5.0	The Collection of Reset CSS
+1432	y047aka	elm-reset-css	https://package.elm-lang.org/packages/y047aka/elm-reset-css/latest	2.6.0	The Collection of Reset CSS
 
 1433	y0hy0h	ordered-containers	https://package.elm-lang.org/packages/y0hy0h/ordered-containers/latest	2.0.3	Ordered Dict and Set for Elm
 
@@ -2913,5 +2913,15 @@
 1456	zwilias	json-decode-exploration	https://package.elm-lang.org/packages/zwilias/json-decode-exploration/latest	6.0.0	JSON decoding with warnings and usage tracking
 
 1457	mewhit	prismicio	https://package.elm-lang.org/packages/mewhit/prismicio/latest	1.0.0	Elm SDK for prismic.io
-1458	jxxcarlson	elm-tree-builder	https://package.elm-lang.org/packages/jxxcarlson/elm-tree-builder/latest	1.0.1	Build rose trees from a string
+
+1458	jxxcarlson	elm-tree-builder	https://package.elm-lang.org/packages/jxxcarlson/elm-tree-builder/latest	7.0.0	Build rose trees from a string
+
 1459	ken-matsui	html-styled-extra	https://package.elm-lang.org/packages/ken-matsui/html-styled-extra/latest	1.0.0	Additional functions for working with Html.Styled
+
+1460	jxxcarlson	elm-l0-parser	https://package.elm-lang.org/packages/jxxcarlson/elm-l0-parser/latest	1.2.3	Fault-tolerant parser for the L0 markup language
+
+1461	jaredramirez	elm-select	https://package.elm-lang.org/packages/jaredramirez/elm-select/latest	1.0.0	A Handsome configurable select inspired by Culture Amp's Kaizen select.
+
+1462	jaredramirez	html-styled-extra	https://package.elm-lang.org/packages/jaredramirez/html-styled-extra/latest	1.0.0	Additional functions for working with Html.Styled
+
+1463	jeongoon	elmnt-scrollpicker	https://package.elm-lang.org/packages/jeongoon/elmnt-scrollpicker/latest	2.0.0	An elm-ui-friendly picker by scrolling

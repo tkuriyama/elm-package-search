@@ -460,7 +460,7 @@ data =
         , "elm-bidict"
         )
       , ( "https://package.elm-lang.org/packages/Janiczek/elm-bidict/latest"
-        , "3.0.0"
+        , "3.1.0"
         , "A bidirectional Dict data structure\n"
         )
       )
@@ -1495,7 +1495,7 @@ data =
         , "elm-select"
         )
       , ( "https://package.elm-lang.org/packages/Confidenceman02/elm-select/latest"
-        , "2.0.0"
+        , "3.0.0"
         , "A Handsome configurable select inspired by Culture Amp's Kaizen select.\n"
         )
       )
@@ -2467,7 +2467,7 @@ data =
         , "elm-json-decode-pipeline"
         )
       , ( "https://package.elm-lang.org/packages/NoRedInk/elm-json-decode-pipeline/latest"
-        , "1.0.0"
+        , "1.0.1"
         , "Use pipelines to build JSON Decoders.\n"
         )
       )
@@ -2611,7 +2611,7 @@ data =
         , "noredink-ui"
         )
       , ( "https://package.elm-lang.org/packages/NoRedInk/noredink-ui/latest"
-        , "15.1.0"
+        , "15.2.0"
         , "UI Widgets we use at NRI\n"
         )
       )
@@ -3817,7 +3817,7 @@ data =
         , "elm-classname"
         )
       , ( "https://package.elm-lang.org/packages/arowM/elm-classname/latest"
-        , "1.0.1"
+        , "1.0.2"
         , "A brief module for custom `class` attributes.\n"
         )
       )
@@ -3934,7 +3934,7 @@ data =
         , "elm-thread"
         )
       , ( "https://package.elm-lang.org/packages/arowM/elm-thread/latest"
-        , "2.2.0"
+        , "3.0.0"
         , "Translate chronological specifications verbatim into applications.\n"
         )
       )
@@ -5518,7 +5518,7 @@ data =
         , "elm-cli-options-parser"
         )
       , ( "https://package.elm-lang.org/packages/dillonkearns/elm-cli-options-parser/latest"
-        , "3.0.1"
+        , "3.1.0"
         , "Type-safe command line options parsing.\n"
         )
       )
@@ -7390,7 +7390,7 @@ data =
         , "elm-chartjs-webcomponent"
         )
       , ( "https://package.elm-lang.org/packages/indicatrix/elm-chartjs-webcomponent/latest"
-        , "2.0.1"
+        , "3.0.0"
         , "Elm types and pipeline functions to easily work with Chartjs\n"
         )
       )
@@ -7849,7 +7849,7 @@ data =
         , "elm-review-unused"
         )
       , ( "https://package.elm-lang.org/packages/jfmengels/elm-review-unused/latest"
-        , "1.1.19"
+        , "1.1.20"
         , "Provides elm-review rules to detect unused elements in your Elm project\n"
         )
       )
@@ -10738,7 +10738,7 @@ data =
         , "compiler"
         )
       , ( "https://package.elm-lang.org/packages/ren-lang/compiler/latest"
-        , "10.0.0"
+        , "10.0.1"
         , "The compiler for Ren: a dynamically typed, functional scripting language.\n"
         )
       )
@@ -12898,7 +12898,7 @@ data =
         , "elm-reset-css"
         )
       , ( "https://package.elm-lang.org/packages/y047aka/elm-reset-css/latest"
-        , "2.5.0"
+        , "2.6.0"
         , "The Collection of Reset CSS\n"
         )
       )
@@ -13132,7 +13132,7 @@ data =
         , "elm-tree-builder"
         )
       , ( "https://package.elm-lang.org/packages/jxxcarlson/elm-tree-builder/latest"
-        , "1.0.1"
+        , "7.0.0"
         , "Build rose trees from a string\n"
         )
       )
@@ -13142,7 +13142,43 @@ data =
         )
       , ( "https://package.elm-lang.org/packages/ken-matsui/html-styled-extra/latest"
         , "1.0.0"
-        , "Additional functions for working with Html.Styled"
+        , "Additional functions for working with Html.Styled\n"
+        )
+      )
+    , ( ( 1460
+        , "jxxcarlson"
+        , "elm-l0-parser"
+        )
+      , ( "https://package.elm-lang.org/packages/jxxcarlson/elm-l0-parser/latest"
+        , "1.2.3"
+        , "Fault-tolerant parser for the L0 markup language\n"
+        )
+      )
+    , ( ( 1461
+        , "jaredramirez"
+        , "elm-select"
+        )
+      , ( "https://package.elm-lang.org/packages/jaredramirez/elm-select/latest"
+        , "1.0.0"
+        , "A Handsome configurable select inspired by Culture Amp's Kaizen select.\n"
+        )
+      )
+    , ( ( 1462
+        , "jaredramirez"
+        , "html-styled-extra"
+        )
+      , ( "https://package.elm-lang.org/packages/jaredramirez/html-styled-extra/latest"
+        , "1.0.0"
+        , "Additional functions for working with Html.Styled\n"
+        )
+      )
+    , ( ( 1463
+        , "jeongoon"
+        , "elmnt-scrollpicker"
+        )
+      , ( "https://package.elm-lang.org/packages/jeongoon/elmnt-scrollpicker/latest"
+        , "2.0.0"
+        , "An elm-ui-friendly picker by scrolling"
         )
       )
     ]
